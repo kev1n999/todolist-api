@@ -9,3 +9,8 @@ class Priority(Enum):
   LOW = "low"
   MEDIUM = "medium"
   HIGH = "high"
+
+class Filter(Enum):
+  NAME = "name"
+  STATUS = "status"
+  PRIORITY = "priority"
