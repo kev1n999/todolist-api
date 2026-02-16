@@ -1,6 +1,7 @@
 from flask import Blueprint, Response, request, jsonify
 from src.api.controllers.create_task import create_new_task
 from src.api.controllers.fetch_tasks import fetch_tasks
+from src.api.controllers.delete_task import delete_a_task
 from src.types.enums import Priority, Status, Filter
 
 routes = Blueprint('routes', __name__)
@@ -31,7 +32,15 @@ def find_tasks() -> Response:
 
 @routes.route("/delete-task", methods={"DELETE"})
 def delete_task() -> Response:
-  ...
+  filter = request.args.get("filter")
+  if not filter:
+    return jsonify({ "status": "err!", "message": "the filter is missing!!" })
+
+  filter_content = request.args.get("filter_content")
+
+  if not filter_content:
+    return jsonify({ "status": "err!", "message": "the filter content is missing!!" })
+  return delete_a_task(Filter(filter), filter_content)
 
 @routes.route("/update-task", methods=["PUT"])
 def update_task() -> Response:
