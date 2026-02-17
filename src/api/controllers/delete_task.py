@@ -1,5 +1,5 @@
 from flask.json import jsonify
-from src.db.queries.manage_tasks import delete_task
+from src.db.queries.delete_task import delete_task
 from src.types.enums import Filter
 
 def delete_a_task(filter: Filter, filter_value: str):

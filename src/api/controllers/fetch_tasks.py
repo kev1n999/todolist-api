@@ -1,5 +1,5 @@
 from flask import jsonify, Response
-from src.db.queries.manage_tasks import fetch_tasks_
+from src.db.queries.fetch_tasks import fetch_tasks_
 from src.types.enums import Filter
 from src.api.utils.serialize_task import serialize_task
 

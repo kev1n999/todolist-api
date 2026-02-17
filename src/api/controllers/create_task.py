@@ -1,5 +1,5 @@
 from flask import jsonify, Response
-from src.db.queries.manage_tasks import create_task
+from src.db.queries.create_task import create_task
 from src.types.enums import Priority, Status
 
 def create_new_task(name: str, description: str, status: Status, priority: Priority) -> Response:
