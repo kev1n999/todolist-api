@@ -70,13 +70,18 @@ Example by task name:
 /find-tasks?filter=name&filter_content=Study
 ```
 
-### PUT `/update-task`(It not works still)
-Update an existing task.
+### PATCH `/update-task` 
+Update datas or fields of an existing task.
+
+Exemple by status:
+```
+"/update-task?filter=status&filter_content=pending&status=completed"
+```
 
 ### DELETE `/delete-task`
 Delete a task
 
-Example by task name:
+Example by task priority:
 ```
 /delete-task?filter=priority&filter_content=low 
 ```
