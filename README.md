@@ -61,13 +61,13 @@ python3 -m src.main
 ### POST `/create-task`
 Create a new task.
 
-### GET `/fetch-tasks`
+### GET `/find-tasks`
 Fetch all tasks.
 If you want to get a specif task, use a url parameter to filter(You can filter by name, status or priority)
 
 Example by task name:
 ```
-/fetch-tasks?filter=name&filter_content=Study
+/find-tasks?filter=name&filter_content=Study
 ```
 
 ### PATCH `/update-task` 
