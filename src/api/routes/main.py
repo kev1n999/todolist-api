@@ -42,6 +42,6 @@ def delete_task() -> Response:
     return jsonify({ "status": "err!", "message": "the filter content is missing!!" })
   return delete_a_task(Filter(filter), filter_content)
 
-@routes.route("/update-task", methods=["PUT"])
+@routes.route("/update-task", methods=["PATCH"])
 def update_task() -> Response:
   ...
