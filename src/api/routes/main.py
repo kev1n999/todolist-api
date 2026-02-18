@@ -15,7 +15,7 @@ def home():
 def create_task() -> Response:
   if request.is_json:
     data = request.get_json()
-    return create_new_task(data["name"], data["description"], data["priority"])
+    return create_new_task(data["name"], data["description"], Priority(data["priority"]))
   else:
     return jsonify({ "status": "err!", "message": "The request data type need to be a json!" })
 

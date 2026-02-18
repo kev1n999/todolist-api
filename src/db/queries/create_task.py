@@ -10,7 +10,7 @@ def create_task(name: str, description: str, *, priority: str):
     TASKS_COLLECTION.insert_one({
       "name": name,
       "description": description,
-      "status": Status.CREATED,
+      "status": Status.CREATED.value,
       "priority": priority,
     })
   except Exception as err:
