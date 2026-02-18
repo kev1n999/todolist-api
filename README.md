@@ -67,7 +67,7 @@ If you want to get a specif task, use a url parameter to filter(You can filter b
 
 Example by task name:
 ```
-/find-tasks?filter=name&filter_content=Study
+/fetch-tasks?filter=name&filter_content=Study
 ```
 
 ### PATCH `/update-task` 
