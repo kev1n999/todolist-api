@@ -52,7 +52,7 @@ def update_task() -> Response:
   filter_content = request.args.get("filter_content")
   name = request.args.get("name")
   description = request.args.get("description")
-  priority = request.args.get("pripority")
+  priority = request.args.get("priority")
   status = request.args.get("status")
 
   if not filter_content:

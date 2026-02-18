@@ -13,6 +13,15 @@ def update_task(
   if not task_exists:
     raise TaskNotExists("the task not exists!")
 
+  if not name:
+    name = task_exists["name"]
+  if not description:
+    description = task_exists["description"]
+  if not priority:
+    priority = task_exists["priority"]
+  if not status:
+    status = task_exists["status"]
+
   try:
     TASKS_COLLECTION.update_one({ filter: filter_content }, update={ "$set": {
       "name": name,
