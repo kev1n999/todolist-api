@@ -13,7 +13,7 @@ def delete_task(filter: str, filter_value: str):
       task = TASKS_COLLECTION.find_one({ "priority": filter_value })
 
   if task is None:
-    TaskNotExists("the task doesn't exists!")
+    raise TaskNotExists("the task doesn't exists!")
   try:
     TASKS_COLLECTION.delete_one({ fil: filter_value })
   except Exception as err:
