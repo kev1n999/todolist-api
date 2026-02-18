@@ -1,5 +1,5 @@
 from src.config import TASKS_COLLECTION
-from src.errors import TaskAlreadyExists
+from src.errors import TaskNotExists
 
 def update_task(
   filter: str,
@@ -11,7 +11,7 @@ def update_task(
 ):
   task_exists = TASKS_COLLECTION.find_one({ filter: filter_content })
   if not task_exists:
-    raise TaskAlreadyExists("the task already exists!")
+    raise TaskNotExists("the task already exists!")
 
   try:
     TASKS_COLLECTION.update_one({ filter: filter_content }, update={ "$set": {

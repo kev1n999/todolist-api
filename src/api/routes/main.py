@@ -58,4 +58,8 @@ def update_task() -> Response:
   if not filter_content:
     return jsonify({ "status": "err!", "message": "the filter content is missing!!" })
 
-  return update_a_task(Filter(filter), filter_content, name, description, Priority(priority), Status(status))
+  return update_a_task(
+    Filter(filter), filter_content, name, description,
+    Priority(priority) if priority is not None else None,
+    Status(status) if status is not None else None,
+  )
