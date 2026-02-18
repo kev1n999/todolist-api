@@ -8,4 +8,4 @@ def update_task(
   priority: str | None,
   status: str | None,
 ):
-  ...
+  pass
