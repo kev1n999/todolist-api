@@ -1,7 +1,8 @@
 from src.config import TASKS_COLLECTION
 from src.errors import TaskAlreadyExists
+from src.types.enums import Status
 
-def create_task(name: str, description: str, status: str, priority: str):
+def create_task(name: str, description: str, *, priority: str):
   task_exists = TASKS_COLLECTION.find_one({ "name": name })
   if task_exists:
     raise TaskAlreadyExists("the task already exists!")
@@ -9,7 +10,7 @@ def create_task(name: str, description: str, status: str, priority: str):
     TASKS_COLLECTION.insert_one({
       "name": name,
       "description": description,
-      "status": status,
+      "status": Status.CREATED,
       "priority": priority,
     })
   except Exception as err:

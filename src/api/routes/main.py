@@ -2,6 +2,7 @@ from flask import Blueprint, Response, request, jsonify
 from src.api.controllers.create_task import create_new_task
 from src.api.controllers.fetch_tasks import fetch_tasks
 from src.api.controllers.delete_task import delete_a_task
+from src.api.controllers.update_task import update_a_task
 from src.types.enums import Priority, Status, Filter
 
 routes = Blueprint('routes', __name__)
@@ -14,7 +15,7 @@ def home():
 def create_task() -> Response:
   if request.is_json:
     data = request.get_json()
-    return create_new_task(data["name"], data["description"], Status(data["status"]), Priority(data["priority"]))
+    return create_new_task(data["name"], data["description"], data["priority"])
   else:
     return jsonify({ "status": "err!", "message": "The request data type need to be a json!" })
 
@@ -44,4 +45,17 @@ def delete_task() -> Response:
 
 @routes.route("/update-task", methods=["PATCH"])
 def update_task() -> Response:
-  ...
+  filter = request.args.get("filter")
+  if not filter:
+    return jsonify({ "status": "err!", "message": "the filter is missing!!" })
+
+  filter_content = request.args.get("filter_content")
+  name = request.args.get("name")
+  description = request.args.get("description")
+  priority = request.args.get("pripority")
+  status = request.args.get("status")
+
+  if not filter_content:
+    return jsonify({ "status": "err!", "message": "the filter content is missing!!" })
+
+  return update_a_task(Filter(filter), filter_content, name, description, Priority(priority), Status(status))
