@@ -11,7 +11,7 @@ def update_task(
 ):
   task_exists = TASKS_COLLECTION.find_one({ filter: filter_content })
   if not task_exists:
-    raise TaskNotExists("the task already exists!")
+    raise TaskNotExists("the task not exists!")
 
   try:
     TASKS_COLLECTION.update_one({ filter: filter_content }, update={ "$set": {
