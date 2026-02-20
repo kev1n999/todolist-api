@@ -9,7 +9,7 @@ def update_a_task(
   description: str | None,
   priority: Priority | None,
   status: Status | None,
-):
+) -> Response:
   try:
     priority_value = ""
     status_value = ""
