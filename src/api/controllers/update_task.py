@@ -1,7 +1,7 @@
 from flask import jsonify, Response
 from src.db.queries.update_task import update_task
 from src.types.enums import Priority, Status, Filter
-
+from typing import Union
 def update_a_task(
   filter: Filter,
   filter_content: str,
@@ -9,7 +9,7 @@ def update_a_task(
   description: str | None,
   priority: Priority | None,
   status: Status | None,
-) -> Response:
+) -> Union[Response, tuple[Response, int]]:
   try:
     priority_value = ""
     status_value = ""
@@ -19,6 +19,6 @@ def update_a_task(
       status_value += status.value
 
     update_task(filter.value, filter_content, name, description, priority_value, status_value)
-    return jsonify({ "status": "success", "message": "task updated!" })
+    return jsonify({ "status": "success", "message": "task updated!" }), 200
   except Exception as err:
-    return jsonify({ "err": "an error ocurred to update task!", "message": f"{err}" })
+    return jsonify({ "err": "an error ocurred to update task!", "message": f"{err}" }), 400
